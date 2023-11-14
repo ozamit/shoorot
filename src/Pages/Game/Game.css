@@ -1,0 +1,10 @@
+.Game {
+    display: flex;
+    justify-content: center;
+
+}
+
+.board {
+    display: flex;
+    flex-direction: column;
+}
