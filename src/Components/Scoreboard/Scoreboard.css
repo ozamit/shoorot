@@ -1,8 +1,20 @@
 .Scoreboard {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
 }
 
 .Scoreboard_inner {
-    /* display: flex; */
+    display: flex;
+}
+
+.player {
+    display: flex;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    font-size: 30px;
+
 }

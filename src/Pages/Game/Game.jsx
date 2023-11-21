@@ -15,13 +15,21 @@ function Game() {
 
     const [allIds, setAllIds] = useState([]);
     const [players, setPlayers] = useState([
-        { playerName: 'player 1, score: ', score: 0, nowPlaying: true},
-        { playerName: 'player 2, score: ', score: 0, nowPlaying: false},
+        { playerName: 'Amit' },
+        { playerName: 'Shira' },
       ]);
+
     const [whoIsPlaying, setWhoIsPlaying] = useState([
         { playerName: 'player 1', nowPlaying: true},
         { playerName: 'player 2', nowPlaying: false},
-      ]);      
+      ]);
+
+      const [player1Score, setPlayer1Score] = useState([0]);  
+      const [player2Score, setPlayer2Score] = useState([0]);  
+
+      const [sumScorePlayer1, setSumScorePlayer1] = useState(0); 
+      const [sumScorePlayer2, setSumScorePlayer2] = useState(0); 
+
     // Open to see all buttons names
     const [checkboxState, setCheckboxState] = useState({
         checkbox1: false,
@@ -81,9 +89,21 @@ function Game() {
         checkbox55: false,
       });
     
-    useEffect(() => {
-        // console.log("Use effect")
-    }, []);
+//   useEffect(() => {
+//     console.log("Use effect")
+// }, []);
+
+function sumScoreForPlayer1() {
+    const sum = player1Score.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    console.log("sum player1Score", sum)
+    setSumScorePlayer1(sum)
+  }
+
+function sumScoreForPlayer2() {
+    const sum = player2Score.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    console.log("sum player2Score", sum)
+    setSumScorePlayer2(sum)
+  }
 
     const handleCheckboxChange = (checkboxName) => {
         setCheckboxState((prevState) => ({
@@ -103,10 +123,10 @@ function Game() {
       });
 
       const toggleNowPlaying = () => {
-        const updatedPlayers = whoIsPlaying.map((player) => ({
-        ...player,
-        nowPlaying: !whoIsPlaying.nowPlaying,
-        }));
+        console.log("whoIsPlaying", whoIsPlaying)
+        const updatedPlayers = whoIsPlaying.map((player) => ({...player, nowPlaying: !player.nowPlaying, }));
+        console.log("updated whoIsPlaying ", updatedPlayers)
+
         setWhoIsPlaying(updatedPlayers);
     }
 
@@ -120,27 +140,17 @@ function Game() {
             console.log("update Score, scoreIncrement:", scoreIncrement)
               const nowPlayingIndex = players.findIndex((player) => player.nowPlaying);
               const isNotPlayingIndex = players.findIndex((player) => player.nowPlaying === false);
+
+              const whoIsPlayingNow = whoIsPlaying.findIndex((player) => player.nowPlaying);
+                console.log("whoIsPlaying", whoIsPlayingNow)
+
+                if ( whoIsPlayingNow === 0 ) { player1Score.push(scoreIncrement); }
+                if ( whoIsPlayingNow === 1 ) { player2Score.push(scoreIncrement); }
+
+                console.log("updatedPlayer1Score: ", player1Score)
+                console.log("updatedPlayer2Score: ", player2Score)
                 
-              const updatedPlayers = [...players];
-                updatedPlayers[nowPlayingIndex] = {
-                  ...updatedPlayers[nowPlayingIndex],
-                  score: updatedPlayers[nowPlayingIndex].score + scoreIncrement,
-                  nowPlaying: !updatedPlayers[nowPlayingIndex].nowPlaying
-                }
-                updatedPlayers[isNotPlayingIndex] = {
-                ...updatedPlayers[isNotPlayingIndex],
-                    nowPlaying: !updatedPlayers[isNotPlayingIndex].nowPlaying
-                };
-
-                console.log("updatedPlayers", updatedPlayers)
-                setPlayers(updatedPlayers)
-                return updatedPlayers;
           };
-
-
-        
-
-
 
         const parts = newItem.split('-');
         // console.log("parts: ", parts[0],parts[1],parts[2])
@@ -161,17 +171,9 @@ function Game() {
             if ( countFirstPart === parseInt(parts[0]) ) {
                 console.log("Complete Shoora!!! The score is", parts[0])
                 updateScore(parseInt(parts[0]))
-            }
-            // else {
-            //     const toggleNowPlaying = () => {
-            //         const updatedPlayers = players.map((player) => ({
-            //         ...player,
-            //         nowPlaying: !player.nowPlaying,
-            //         }));
-            //         setPlayers(updatedPlayers);
-            //     };
-            //     toggleNowPlaying()
-            //     }    
+                sumScoreForPlayer1()
+                sumScoreForPlayer2()
+            } 
         }
         checkIfCompleteFirstShoora(countFirstPart)
 
@@ -182,17 +184,9 @@ function Game() {
             if ( countSecondPart === 11 - (parseInt(parts[1])) ) {
                 console.log("Complete Shoora!!! The score is", 11 - parts[1])
                 updateScore(11 - parts[1])
-            } 
-            // else {
-            //     const toggleNowPlaying = () => {
-            //         const updatedPlayers = players.map((player) => ({
-            //         ...player,
-            //         nowPlaying: !player.nowPlaying,
-            //         }));
-            //         setPlayers(updatedPlayers);
-            //     };
-            //     toggleNowPlaying()
-            //     }     
+                sumScoreForPlayer1()
+                sumScoreForPlayer2()
+            }  
         }
         checkIfCompleteSecondShoora(countSecondPart)
 
@@ -203,17 +197,10 @@ function Game() {
             if ( countLastPart === 11 - (parseInt(parts[2])) ) {
                 console.log("Complete Shoora!!! The score is", 11 - parts[2])
                 updateScore(11 - parts[2])
+                sumScoreForPlayer1()
+                sumScoreForPlayer2()
             }
-            // else {
-            // const toggleNowPlaying = () => {
-            //     const updatedPlayers = players.map((player) => ({
-            //     ...player,
-            //     nowPlaying: !player.nowPlaying,
-            //     }));
-            //     setPlayers(updatedPlayers);
-            // };
-            // toggleNowPlaying()
-            // } 
+
         }
         checkIfCompleteLastShoora(countLastPart)
 
@@ -272,14 +259,15 @@ function Game() {
       };
 
   return (
+    <div className="wrapper">
     <div className='Game'>
         <ThemeProvider theme={theme}>
         
-        <div><Scoreboard players={players} whoIsPlaying={whoIsPlaying}/></div>
+        <div><Scoreboard players={players} whoIsPlaying={whoIsPlaying} player1Score={player1Score} player2Score={player2Score} sumScorePlayer1={sumScorePlayer1} sumScorePlayer2={sumScorePlayer2}/></div>
         <div>
             <div className='board'>
                 <div className='r1'>
-                    <Checkbox id='1-1-1' onChange={() => handleCheckboxChange("checkbox1")} onClick={() => addItem('1-1-1')} {...label} icon={<BlurCircularIcon />} checkedIcon={<BrightnessHighIcon />} disabled={checkboxState.checkbox1} />
+                    <Checkbox id='1-1-1' size="medium" onChange={() => handleCheckboxChange("checkbox1")} onClick={() => addItem('1-1-1')} {...label} icon={<BlurCircularIcon />} checkedIcon={<BrightnessHighIcon />} disabled={checkboxState.checkbox1} />
                 </div>
                 <div className='r2'>
                     <Checkbox id='2-1-2' onChange={() => handleCheckboxChange("checkbox2")} onClick={() => addItem('2-1-2')} {...label} icon={<BlurCircularIcon />} checkedIcon={<BrightnessHighIcon />} disabled={checkboxState.checkbox2} />
@@ -356,6 +344,7 @@ function Game() {
             </div>
     </div>
     </ThemeProvider>
+    </div>
     </div>
   )
 }
