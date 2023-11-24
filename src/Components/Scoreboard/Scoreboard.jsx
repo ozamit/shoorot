@@ -1,30 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import "./Scoreboard.css"
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 
 function Scoreboard({ players, whoIsPlaying, player1Score, player2Score, sumScorePlayer1, sumScorePlayer2 }) {
 
-  const [isActive, setIsActive] = useState(false);
-  const [isTransparent, setIsTransparent] = useState(false);
-
-  const handleToggleTransparency = () => {
-    setIsTransparent(!isTransparent);
-  };
-
-  const toggleActive = () => {
-    setIsActive(!isActive);
-  };
-
-  const iconColor = isTransparent ? 'rgba(255, 0, 0, 0.5)' : 'rgba(255, 0, 0, 1)';
-
-  const iconStyle = {
-    color: iconColor,
-  };
-
   const containerStyle1 = {
     display: 'flex',
-    padding: '5px',
-    color: 'rgba(255, 0, 0, 0)',
     // border: whoIsPlaying && whoIsPlaying[0].nowPlaying ? '1px solid black' : '0px solid black',
     borderRadius: '5px',
     color: 'black',
@@ -34,7 +15,6 @@ function Scoreboard({ players, whoIsPlaying, player1Score, player2Score, sumScor
   };
 
   const containerStyle2 = {
-    padding: '5px',
     // border: whoIsPlaying && whoIsPlaying[1].nowPlaying ? '1px solid black' : '0px solid black',
     borderRadius: '5px',
     color: 'black',

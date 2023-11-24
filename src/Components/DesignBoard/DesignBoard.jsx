@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./DesignBoard.css"
-import { FormControl, InputLabel, MenuItem, Select, Button } from '@mui/material';
 
 import CoronavirusIcon from '@mui/icons-material/Coronavirus';
 import IconButton from '@mui/material/IconButton';
-import BrightnessHighIcon from '@mui/icons-material/BrightnessHigh';
 import AdjustIcon from '@mui/icons-material/Adjust';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import AdbIcon from '@mui/icons-material/Adb';
 import MoodIcon from '@mui/icons-material/Mood';
 import CameraIcon from '@mui/icons-material/Camera';
 

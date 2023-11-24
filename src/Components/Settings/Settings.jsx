@@ -4,7 +4,7 @@ import "./Settings.css"
 import IconButton from '@mui/material/IconButton';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import GavelIcon from '@mui/icons-material/Gavel';
-import SettingsIcon from '@mui/icons-material/Settings';
+// import SettingsIcon from '@mui/icons-material/Settings';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import BrushIcon from '@mui/icons-material/Brush';
 

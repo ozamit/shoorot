@@ -12,10 +12,8 @@ import CoronavirusIcon from '@mui/icons-material/Coronavirus';
 import CameraIcon from '@mui/icons-material/Camera';
 import Checkbox from '@mui/material/Checkbox';
 import BrightnessHighIcon from '@mui/icons-material/BrightnessHigh';
-import BlurCircularIcon from '@mui/icons-material/BlurCircular';
 import AdjustIcon from '@mui/icons-material/Adjust';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import AdbIcon from '@mui/icons-material/Adb';
 import MoodIcon from '@mui/icons-material/Mood';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -123,6 +121,7 @@ const iconList = [
   <CameraIcon />,
   <MoodIcon />,
 ];
+
 const handleChangeIcon = (newIconIndex) => {
     console.log("newIconIndex", newIconIndex);
     // console.log("iconList[newIconIndex]", iconList[newIconIndex]);
@@ -132,14 +131,14 @@ const handleChangeIcon = (newIconIndex) => {
 
 function sumScoreForPlayer1() {
     const sum = player1Score.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    const NewValue = player1Score.reduce((accumulator, currentValue) => currentValue, 0);
+    // const NewValue = player1Score.reduce((accumulator, currentValue) => currentValue, 0);
     console.log("sum player1Score", sum)
     setSumScorePlayer1(sum)
   }
 
 function sumScoreForPlayer2() {
     const sum = player2Score.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    const NewValue = player2Score.reduce((accumulator, currentValue) => currentValue, 0);
+    // const NewValue = player2Score.reduce((accumulator, currentValue) => currentValue, 0);
     console.log("sum player2Score", sum)
     setSumScorePlayer2(sum)
   }
@@ -370,7 +369,7 @@ function sumScoreForPlayer2() {
         <ThemeProvider theme={theme}>
         
         <div className='leftComp'>
-            <img src="https://gcdnb.pbrd.co/images/0EtD8GLnQHLy.png?o=1" alt="Your Image" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+            <img src="https://gcdnb.pbrd.co/images/0EtD8GLnQHLy.png?o=1" alt="logo" style={{ maxWidth: '100%', maxHeight: '100%' }} />
             <Scoreboard players={players} whoIsPlaying={whoIsPlaying} player1Score={player1Score} player2Score={player2Score} sumScorePlayer1={sumScorePlayer1} sumScorePlayer2={sumScorePlayer2}/>
             <Settings handleCloseSetNames={handleCloseSetNames} handleCloseDesignBoard={handleCloseDesignBoard} handleOpenRulesPopup={handleOpenRulesPopup} />
             {/* {setNamesOpen && <SetNames setNewName1={setNewName1} setNewName2={setNewName2} handleCloseSetNames={handleCloseSetNames}/>} */}
