@@ -25,8 +25,8 @@ function Game() {
 
     const [allIds, setAllIds] = useState([]);
     const [players, setPlayers] = useState([
-        { playerName: 'Amit' },
-        { playerName: 'Shira' },
+        { playerName: 'שחקן א' },
+        { playerName: 'שחקן ב' },
       ]);
 
     const [whoIsPlaying, setWhoIsPlaying] = useState([
@@ -43,7 +43,7 @@ function Game() {
       const [setNamesOpen, setSetNamesOpen] = useState(false);
       const [designBoardOpen, setDesignBoardOpen] = useState(false);
 
-      const [clicks, setClicks] = useState(0);
+      const [clicks, setClicks] = useState(53);
       const [gameEnds, setGameEnds] = useState(false);
       const [rulesPopup, setRulesPopup] = useState(false);
       const [winner, setWinner] = useState();

@@ -3,7 +3,7 @@
     justify-content: space-around;
     background-color: aliceblue;
     border: 1px solid black;
-    width: 25vw;
+    width: 30vw;
     height: 20vw;
     align-items: center;
     border-radius: 10px;
@@ -37,4 +37,8 @@
   
   .marginBelowForm {
     margin-bottom: 10px; /* Add margin below the form */
+  }
+
+  .closeBtn {
+    margin-top: 15px !important;
   }

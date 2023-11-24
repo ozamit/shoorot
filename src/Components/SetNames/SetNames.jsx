@@ -3,6 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import "./SetNames.css"
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 
 function SetNames({ handleCloseSetNames, players, setNewName1, setNewName2 }) {
@@ -79,7 +80,9 @@ function SetNames({ handleCloseSetNames, players, setNewName1, setNewName2 }) {
           GO
         </Button>
       </form>
-        <Button onClick={handleCloseSetNames}>close</Button>
+      <div className="closeBtn">
+        <Button variant="outlined" onClick={handleCloseSetNames}> סגור </Button>
+      </div>
     </div>
 
 

@@ -3,7 +3,8 @@
     justify-content: space-around;
     background-color: aliceblue;
     border: 1px solid black;
-    width: 25vw;
+    width: 30vw;
+    /* margin-right: -50px; */
     height: 5vw;
     align-items: center;
     border-radius: 10px;

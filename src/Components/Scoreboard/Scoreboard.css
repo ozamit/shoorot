@@ -3,16 +3,17 @@
     justify-content: space-around;
     background-color: aliceblue;
     border: 1px solid black;
-    width: 25vw;
+    /* width: 25vw; */
+    margin-right: -100px;
     height: 13vw;
     align-items: center;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-
 }
 
 .Scoreboard_inner {
     display: flex;
+    margin-top: -35px;
 }
 
 .player {
@@ -25,5 +26,12 @@
     align-items: flex-end;
     margin: 0 10px;
     font-size: 30px;
+    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+    border-radius: 15px;
+    padding: 15px ;
+    margin: 20px 20px -20px 20px;
+    background-color: white;
 
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Rules.css";
+import Button from '@mui/material/Button';
 
 
 const Rules = ({onClose}) => {
@@ -48,7 +49,10 @@ const Rules = ({onClose}) => {
 
 
 </div>
-        <button className='closeBTN' onClick={onClose}>Close</button>
+          <div className="closeBtn">
+            <Button variant="outlined" onClick={onClose}> סגור </Button>
+          </div>
+        {/* <button className='closeBTN' onClick={onClose}>Close</button> */}
       </div>
     </div>
     </div>
