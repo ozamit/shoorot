@@ -375,30 +375,32 @@ function sumScoreForPlayer2() {
             {/* {setNamesOpen && <SetNames setNewName1={setNewName1} setNewName2={setNewName2} handleCloseSetNames={handleCloseSetNames}/>} */}
         
             <div>
-      <CSSTransition
+      {/* <CSSTransition
             in={setNamesOpen}
             timeout={200} // Duration of the animation in milliseconds
             classNames="slide" // Class names applied during different states of the animation
             unmountOnExit
-      >
-        <SetNames
+      > */}
+       {setNamesOpen && <SetNames
           players={players}
           setNewName1={setNewName1}
           setNewName2={setNewName2}
           handleCloseSetNames={handleCloseSetNames}
-        />
-      </CSSTransition>
-      <CSSTransition
+        />}
+        
+      {/* </CSSTransition> */}
+      {/* <CSSTransition
             in={designBoardOpen}
             timeout={200} // Duration of the animation in milliseconds
             classNames="slide" // Class names applied during different states of the animation
             unmountOnExit
-      >
-        <DesignBoard 
-          handleCloseDesignBoard={handleCloseDesignBoard}
-          handleChangeIcon={handleChangeIcon}
-        />
-      </CSSTransition>
+      > */}
+          {designBoardOpen && <DesignBoard 
+            handleCloseDesignBoard={handleCloseDesignBoard}
+            handleChangeIcon={handleChangeIcon}
+        />}
+
+      {/* </CSSTransition> */}
 
     </div>
         
