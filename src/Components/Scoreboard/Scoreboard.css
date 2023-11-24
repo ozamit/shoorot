@@ -1,6 +1,14 @@
 .Scoreboard {
-    /* display: flex;
-    flex-direction: column; */
+    display: flex;
+    justify-content: space-around;
+    background-color: aliceblue;
+    border: 1px solid black;
+    width: 25vw;
+    height: 13vw;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
 }
 
 .Scoreboard_inner {
@@ -9,11 +17,12 @@
 
 .player {
     display: flex;
+    background-color: rgba(255, 255, 255, 0);
 }
 
 .score {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     margin: 0 10px;
     font-size: 30px;
 

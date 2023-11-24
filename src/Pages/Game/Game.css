@@ -8,7 +8,7 @@
 }
 .Game {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: stretch;
     background-color: #ffffff;
     border: 1px solid #ffffff;
@@ -22,7 +22,37 @@
 .board {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     /* border: 1px solid black; */
     border-radius: 10px;
+    width: 66vw;
+    height: 85vh;
 }
 
+.leftComp {
+    /* display: flex; */
+}
+
+/* SetNames.css */
+
+.slide-enter {
+    opacity: 0.01;
+    height: 0;
+  }
+  
+  .slide-enter-active {
+    opacity: 1;
+    height: auto;
+    transition: opacity 300ms ease-in, height 300ms ease-in;
+  }
+  
+  .slide-exit {
+    opacity: 1;
+    height: auto;
+  }
+  
+  .slide-exit-active {
+    opacity: 0.01;
+    height: 0;
+    transition: opacity 300ms ease-in, height 300ms ease-in;
+  }

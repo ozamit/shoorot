@@ -1,0 +1,40 @@
+.setNamesWrapper {
+    display: flex;
+    justify-content: space-around;
+    background-color: aliceblue;
+    border: 1px solid black;
+    width: 25vw;
+    height: 20vw;
+    align-items: center;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+}
+
+.formContainer {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    width: 95%; /* Set the width of the formContainer to 85% of the containing div */
+  }
+  
+  .label {
+    margin-right: 8px; /* Adjust the spacing between the label and TextField */
+  }
+  
+  .textField {
+    width: 85%; /* Adjust the width of the TextField */
+    margin-bottom: 20px !important;
+  }
+  
+  .submitButton {
+    width: 20%; /* Adjust the width of the submit button */
+    background-color: #007272 !important;
+    border-radius: 10px !important;
+    margin-bottom: 20px !important;
+
+  }
+  
+  .marginBelowForm {
+    margin-bottom: 10px; /* Add margin below the form */
+  }
