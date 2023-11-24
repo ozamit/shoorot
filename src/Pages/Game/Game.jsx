@@ -8,6 +8,7 @@ import GameOverPopup from "../../Components/GameOverPopup/GameOverPopup"
 import DesignBoard from "../../Components/DesignBoard/DesignBoard"
 import Rules from "../../Components/Rules/Rules"
 
+import SnackbarContent from '@mui/material/SnackbarContent';
 import CoronavirusIcon from '@mui/icons-material/Coronavirus';
 import CameraIcon from '@mui/icons-material/Camera';
 import Checkbox from '@mui/material/Checkbox';
@@ -15,6 +16,13 @@ import BrightnessHighIcon from '@mui/icons-material/BrightnessHigh';
 import AdjustIcon from '@mui/icons-material/Adjust';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import MoodIcon from '@mui/icons-material/Mood';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
@@ -50,6 +58,8 @@ function Game() {
 
       const [icon1, setIcon1] = useState(0);
       const [checkedIcon, setCheckedIcon] = useState(<BrightnessHighIcon />);
+
+      const [isFullScreen, setIsFullScreen] = useState(false);
 
     // Open to see all buttons names
     const [checkboxState, setCheckboxState] = useState({
@@ -114,6 +124,58 @@ function Game() {
     // console.log("setNamesOpen", setNamesOpen)
 }, []);
 
+useEffect(() => {
+  // Apply styles to the wrapper based on the full-screen mode
+  const wrapperElement = document.querySelector('.wrapper');
+  if (wrapperElement) {
+    if (isFullScreen) {
+      wrapperElement.style.width = '100%';
+      wrapperElement.style.height = '100vh';
+      // Add other styles as needed
+    } else {
+      // Reset styles when exiting full screen
+      wrapperElement.style.width = 'auto';
+      wrapperElement.style.height = 'auto';
+      // Remove other styles as needed
+    }
+  }
+}, [isFullScreen]);
+
+const toggleFullScreen = () => {
+  setIsFullScreen(!isFullScreen);
+};
+
+
+  const [open, setOpen] = React.useState(false);
+  const [snackbarMsg, setSnackbarMsg] = useState("");
+
+  const handleClick = (whoIsPlayingNow, score) => {
+    setSnackbarMsg( players[whoIsPlayingNow].playerName + " השלים שורה בשווי " + score + " נקודות " + "💃" )
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+  
+
 const iconList = [
   <AdjustIcon />,
   <CoronavirusIcon />,
@@ -175,7 +237,7 @@ function sumScoreForPlayer2() {
         setSetNamesOpen(!setNamesOpen)
     }
     const handleCloseDesignBoard = () => {
-        console.log('close design board', designBoardOpen)
+        // console.log('close design board', designBoardOpen)
         setDesignBoardOpen(!designBoardOpen)
     }
 
@@ -215,9 +277,9 @@ function sumScoreForPlayer2() {
 
 
       const toggleNowPlaying = () => {
-        console.log("whoIsPlaying", whoIsPlaying)
+        // console.log("whoIsPlaying", whoIsPlaying)
         const updatedPlayers = whoIsPlaying.map((player) => ({...player, nowPlaying: !player.nowPlaying, }));
-        console.log("updated whoIsPlaying ", updatedPlayers)
+        // console.log("updated whoIsPlaying ", updatedPlayers)
 
         setWhoIsPlaying(updatedPlayers);
         countTotalClicks()
@@ -235,13 +297,15 @@ function sumScoreForPlayer2() {
               const isNotPlayingIndex = players.findIndex((player) => player.nowPlaying === false);
 
               const whoIsPlayingNow = whoIsPlaying.findIndex((player) => player.nowPlaying);
-                console.log("whoIsPlaying", whoIsPlayingNow)
+                // console.log("whoIsPlaying", whoIsPlayingNow)
 
                 if ( whoIsPlayingNow === 0 ) { player1Score.push(scoreIncrement); }
                 if ( whoIsPlayingNow === 1 ) { player2Score.push(scoreIncrement); }
 
                 console.log("updatedPlayer1Score: ", player1Score)
                 console.log("updatedPlayer2Score: ", player2Score)
+
+                handleClick(whoIsPlayingNow, scoreIncrement)
                 
           };
 
@@ -333,7 +397,7 @@ function sumScoreForPlayer2() {
       const countTotalClicks = () => {
         const TotalClicks = clicks + 1;
         setClicks(TotalClicks)
-        console.log('TotalClicks:', TotalClicks);
+        // console.log('TotalClicks:', TotalClicks);
         if (TotalClicks === 55) { handleGameEnd() }
       };
 
@@ -357,7 +421,18 @@ function sumScoreForPlayer2() {
 
   return (
     <div className="wrapper">
+      <div className={`wrapper ${isFullScreen ? 'fullscreen' : ''}`}>
     <div className='Game'>
+    <div>
+    <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
+      <SnackbarContent
+        style={{ backgroundColor: 'green' }}
+        message={snackbarMsg}
+        action={action}
+      />
+    </Snackbar>
+    
+    </div>
 
     <div>
       {/* Your main game content */}
@@ -365,10 +440,9 @@ function sumScoreForPlayer2() {
       {gameEnds && <GameOverPopup onClose={handleClosePopup} winner={winner}/>}
       {rulesPopup && <Rules onClose={handleClosePopup} />}
     </div>
-
         <ThemeProvider theme={theme}>
-        
         <div className='leftComp'>
+
             <img src="https://gcdnb.pbrd.co/images/0EtD8GLnQHLy.png?o=1" alt="logo" style={{ maxWidth: '100%', maxHeight: '100%' }} />
             <Scoreboard players={players} whoIsPlaying={whoIsPlaying} player1Score={player1Score} player2Score={player2Score} sumScorePlayer1={sumScorePlayer1} sumScorePlayer2={sumScorePlayer2}/>
             <Settings handleCloseSetNames={handleCloseSetNames} handleCloseDesignBoard={handleCloseDesignBoard} handleOpenRulesPopup={handleOpenRulesPopup} />
@@ -409,6 +483,9 @@ function sumScoreForPlayer2() {
         
         <div>
             <div className='board'>
+            <div className='FullscreenIcon'>
+              <Button variant="outlined" onClick={toggleFullScreen}>Full Screen <FullscreenIcon /> <SwapHorizIcon /> <FullscreenExitIcon /></Button>
+            </div>
                 <div className='r1'>
                     <Checkbox id='1-1-1' onChange={() => handleCheckboxChange("checkbox1")} onClick={() => addItem('1-1-1')} {...label} icon={iconList[icon1]} checkedIcon={checkedIcon} disabled={checkboxState.checkbox1} />
                 </div>
@@ -487,6 +564,7 @@ function sumScoreForPlayer2() {
             </div>
     </div>
     </ThemeProvider>
+    </div>
     </div>
     </div>
   )

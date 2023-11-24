@@ -6,6 +6,15 @@
     left: 0;
     right: 0;
 }
+
+.wrapper.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  /* Add other styles as needed */
+}
+
 .Game {
     display: flex;
     justify-content: space-between;
@@ -28,6 +37,13 @@
     width: 66vw;
     height: 85vh;
 }
+
+.FullscreenIcon {
+  display: flex;
+  justify-content: flex-end;
+  margin: -80px 40px 0 0;
+}
+
 
 .leftComp {
     /* display: flex; */
